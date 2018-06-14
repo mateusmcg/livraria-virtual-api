@@ -6,13 +6,13 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace livraria_virtual_api.Controllers
 {
-    [Route("v1/[controller]")]
+    [Route("v1/public/[controller]")]
     [ApiController]
     public class OrderController : ControllerBase
     {
         // GET api/order
         [HttpGet]
-        public IActionResult Get(int? page, int? limit)
+        public IActionResult Get([FromQuery]int? page, [FromQuery]int? limit)
         {
             try
             {
@@ -119,7 +119,7 @@ namespace livraria_virtual_api.Controllers
         {
             try
             {
-                return Ok();
+                return Ok("Pedido criado com sucesso.");
             }
             catch (System.Exception)
             {

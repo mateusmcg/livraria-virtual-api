@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace livraria_virtual_api.Controllers
 {
-    [Route("v1/[controller]")]
+    [Route("v1/public/[controller]")]
     [ApiController]
     public class CartController : ControllerBase
     {
@@ -46,7 +46,7 @@ namespace livraria_virtual_api.Controllers
         {
             try
             {
-                return StatusCode(201);
+                return StatusCode(201, "Item adicionado ao carrinho com sucesso.");
             }
             catch (System.Exception)
             {
@@ -60,7 +60,7 @@ namespace livraria_virtual_api.Controllers
         {
             try
             {
-                return Ok();
+                return Ok(string.Format("Item {0} removido do carrinho com sucesso.", id));
             }
             catch (System.Exception)
             {

@@ -6,13 +6,13 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace livraria_virtual_api.Controllers
 {
-    [Route("v1/[controller]")]
+    [Route("v1/public/[controller]")]
     [ApiController]
     public class BookController : ControllerBase
     {
         // GET api/book
         [HttpGet]
-        public IActionResult Get(int? page, int? limit, string title, string author, DateTime publishDate)
+        public IActionResult Get([FromQuery]int? page, [FromQuery]int? limit, [FromQuery]string title, [FromQuery]string author, [FromQuery]DateTime publishDate)
         {
             try
             {
@@ -54,7 +54,7 @@ namespace livraria_virtual_api.Controllers
         {
             try
             {
-                return StatusCode(201);
+                return StatusCode(201, "Livro criado com sucesso.");
             }
             catch (System.Exception)
             {
@@ -68,7 +68,7 @@ namespace livraria_virtual_api.Controllers
         {
             try
             {
-                return Ok();
+                return Ok(string.Format("Livro {0} atualizado com sucesso.", isbn));
             }
             catch (System.Exception)
             {
@@ -82,7 +82,7 @@ namespace livraria_virtual_api.Controllers
         {
             try
             {
-                return Ok();
+                return Ok(string.Format("Livro {0} removido com sucesso.", isbn));
             }
             catch (System.Exception)
             {
