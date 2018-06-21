@@ -48,6 +48,7 @@ namespace livraria_virtual_api.Controllers
                     });
                 }
 
+                Util.Audit(mockList, mockList, ActionType.GET);
                 return Ok(mockList);
             }
             catch (System.Exception)
@@ -86,6 +87,7 @@ namespace livraria_virtual_api.Controllers
                     Items = mockCartList
                 };
 
+                Util.Audit(orderMock, orderMock, ActionType.GET);
                 return Ok(orderMock);
             }
             catch (System.Exception)
@@ -95,7 +97,7 @@ namespace livraria_virtual_api.Controllers
         }
 
         [HttpGet("{id}/status")]
-        public IActionResult Post(int id)
+        public IActionResult GetStatus(int id)
         {
             try
             {
@@ -105,6 +107,7 @@ namespace livraria_virtual_api.Controllers
                     Description = "Produto Entregue."
                 };
 
+                Util.Audit(id, id, ActionType.GET);
                 return Ok(status);
             }
             catch (System.Exception)
@@ -115,10 +118,11 @@ namespace livraria_virtual_api.Controllers
 
         // POST api/order
         [HttpPost]
-        public IActionResult Post([FromBody] Order order)
+        public IActionResult GenerateOrder([FromBody] Order order)
         {
             try
             {
+                Util.Audit(order, order, ActionType.POST);
                 return Ok("Pedido criado com sucesso.");
             }
             catch (System.Exception)

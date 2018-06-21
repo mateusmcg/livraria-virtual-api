@@ -32,6 +32,7 @@ namespace livraria_virtual_api.Controllers
                     });
                 }
 
+                Util.Audit(mockList, mockList, ActionType.GET);
                 return Ok(mockList);
             }
             catch (System.Exception)
@@ -46,6 +47,7 @@ namespace livraria_virtual_api.Controllers
         {
             try
             {
+                Util.Audit(item, item, ActionType.POST);
                 return StatusCode(201, "Item adicionado ao carrinho com sucesso.");
             }
             catch (System.Exception)
@@ -60,6 +62,7 @@ namespace livraria_virtual_api.Controllers
         {
             try
             {
+                Util.Audit(id, id, ActionType.DELETE);
                 return Ok(string.Format("Item {0} removido do carrinho com sucesso.", id));
             }
             catch (System.Exception)
